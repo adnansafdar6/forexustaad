@@ -27,7 +27,7 @@
                                 </a>
                             </div>
                             <div class="col-4">
-                                <select class="custom-select btn-outline-success" name="category_id" >
+                                <select class="custom-select " name="category_id" >
                                     <option value="">----Filter By Category----</option>
                                     @foreach($training as $key => $value)
                                         <option
