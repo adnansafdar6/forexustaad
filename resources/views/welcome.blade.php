@@ -9,7 +9,7 @@
 </head>
 <body>
 <a href="{{route('admin.login')}}"><h1>Admin LogIn</h1></a>
-<a href="{{route('admin.register')}}"><h1>Admin Register</h1></a>
+{{--<a href="{{route('admin.register')}}"><h1>Admin Register</h1></a>--}}
 <br>
 <a href="{{route('login')}}"><h1>LogIn</h1></a>
 <a href="{{route('register')}}"><h1>Register</h1></a>

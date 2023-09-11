@@ -80,7 +80,7 @@
                 <label for="desc" style="margin-bottom: 10px;">Description</label>
 
                 <textarea type="text" id="ckeditor" class="form-control" name="desc"
-                          placeholder="Enter Description" required >{{ old('desc', $training->desc) }}</textarea>
+                          placeholder="Enter Description"  >{{ old('desc', $training->desc) }}</textarea>
 
                 @if($errors->has('desc'))
                     <p class="text-danger">{{ $errors->first('desc') }}</p>

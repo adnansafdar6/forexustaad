@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             'role' => App\Http\Controllers\Admin\RoleController::class,
             'categories' => App\Http\Controllers\Admin\CategoryController::class,
             'subcategories' => App\Http\Controllers\Admin\SubCategoryController::class,
+            'socialicon' => App\Http\Controllers\Admin\SocialIconController::class,
         ]);
     });
 });

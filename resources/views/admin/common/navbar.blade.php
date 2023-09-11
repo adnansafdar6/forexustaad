@@ -49,7 +49,7 @@
                             <a href="#">
                                 <div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg">
+{{--													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg">--}}
 												</span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
@@ -62,7 +62,7 @@
                             <a href="#">
                                 <div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg">
+{{--													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg">--}}
 												</span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
@@ -75,7 +75,7 @@
                             <a href="#">
                                 <div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg">
+{{--													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg">--}}
 												</span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a amount of $210 for his <span class="noti-title">appointment</span></p>
@@ -88,7 +88,7 @@
                             <a href="#">
                                 <div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient3.jpg">
+{{--													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient3.jpg">--}}
 												</span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>
@@ -120,7 +120,7 @@
                             <a href="#">
                                 <div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg">
+{{--													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg">--}}
 												</span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
@@ -133,7 +133,7 @@
                             <a href="#">
                                 <div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg">
+{{--													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg">--}}
 												</span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
@@ -146,7 +146,7 @@
                             <a href="#">
                                 <div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg">
+{{--													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg">--}}
 												</span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a amount of $210 for his <span class="noti-title">appointment</span></p>
@@ -159,7 +159,7 @@
                             <a href="#">
                                 <div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient3.jpg">
+{{--													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient3.jpg">--}}
 												</span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>

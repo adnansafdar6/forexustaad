@@ -317,6 +317,12 @@ function DateToUnixformat($date)
 
     return $timestamp;
 }
+function DateToHumanformat($date)
+{
+    $dateTime = new DateTime($date);
+    $timestamp = $dateTime->format('d/M/y - H:m');
+    return $timestamp;
+}
 
 function unixTODateformate($date)
 {
