@@ -4,6 +4,7 @@ use App\Http\Libraries\ResponseBuilder;
 use App\Http\Libraries\Uploader;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Str;
 
 function formate($date){
     return substr($date,0, -8);
@@ -39,6 +40,14 @@ function services($id){
 
 function dateF($date){
     return $date->diffForHumans();
+}
+function strlimit($date){
+
+    $limit1 =  Str::limit($date, 15);
+
+
+
+    return $limit1;
 }
 
 function checkShopService($shopServices, $id){

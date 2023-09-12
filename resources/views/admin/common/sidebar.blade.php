@@ -12,50 +12,24 @@
                 <li class="{{ str_contains(url()->current(), "permissions") ? 'active' : '' }}">
                     <a href="{{ route('admin.permissions.index') }}"><i class="fe fe-home"></i> <span>Permissions</span></a>
                 </li>
-
-                <li>
-                    <a  class="{{ str_contains(url()->current(), "categories") ? 'active' : '' }}" href="{{ route('admin.categories.index') }}"><i class="fe fe-users"></i><span>Categories</span></a>
+                <li class="{{ str_contains(url()->current(), "categories") ? 'active' : '' }}">
+                    <a  href="{{ route('admin.categories.index') }}"><i class="fe fe-users"></i><span>Categories</span></a>
                 </li>
-                <li >
+                <li  >
                     <a  class="{{ str_contains(url()->current(), "subcategories") ? 'active' : '' }}" href="{{ route('admin.subcategories.index') }}"><i class="fe fe-users"></i><span>SubCategories</span></a>
                 </li>
-                <li>
+                <li class="{{ str_contains(url()->current(), "post") ? 'active' : '' }}" >
                     <a href="{{ route('admin.post.index') }}"><i class="fe fe-layout"></i> <span>Posts</span></a>
                 </li>
-                <li>
-                    <a href="{{ route('admin.training.index') }}"><i class="fe fe-user-plus"></i> <span>Training </span></a>
+                <li class="{{ str_contains(url()->current(), "training") ? 'active' : '' }}">
+                    <a   href="{{ route('admin.training.index') }}"><i class="fe fe-user-plus"></i> <span>Training </span></a>
                 </li>
                 <li>
                     <a href="no.html"><i class="fe fe-users"></i> <span>Brokers</span></a>
                 </li>
-{{--                <li>--}}
-{{--                    <a href="no.html"><i class="fe fe-user-plus"></i> <span>Header</span></a>--}}
-{{--                </li>--}}
-
-{{--                <li>--}}
-{{--                    <a href="no.html"><i class="fe fe-user-plus"></i> <span>Comments</span></a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="no.html"><i class="fe fe-user-plus"></i> <span>FAQ’s</span></a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="no.html"><i class="fe fe-user"></i> <span>Static Pages</span></a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="no.html"><i class="fe fe-star-o"></i> <span>Banner</span></a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="no.html"><i class="fe fe-activity"></i> <span>Footer</span></a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="no.html"><i class="fe fe-activity"></i> <span>Subscribers</span></a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="no.html"><i class="fe fe-activity"></i> <span>Users</span></a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="no.html"><i class="fe fe-vector"></i> <span>Settings</span></a>--}}
-{{--                </li>--}}
+                <li>
+                    <a class="{{ str_contains(url()->current(), "faq") ? 'active' : '' }}"  href="{{ route('admin.faq.index') }}"><i class="fe fe-user-plus"></i> <span>FAQ's </span></a>
+                </li>
                 <li class="submenu">
                     <a class="" href="#"><i class="fe fe-document"></i><span>Header</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -63,8 +37,15 @@
                         <li><a class="{{ str_contains(url()->current(), "logo") ? 'active' : '' }}" href="{{ route('admin.logo.index') }}"><i class="fe fe-document"></i><span>Logo</span></a></li>
                         <li><a class="{{ str_contains(url()->current(), "favicon") ? 'active' : '' }}" href="{{ route('admin.favicon.index') }}"><i class="fe fe-document"></i><span>FavIcon</span></a></li>
                         <li><a class="{{ str_contains(url()->current(), "slidingimage") ? 'active' : '' }}" href="{{ route('admin.slidingimage.index') }}"><i class="fe fe-document"></i><span>Sliding Image</span></a></li>
-{{--                        <li><a class="{{ str_contains(url()->current(), "training") ? 'active' : '' }}" href=""><i class="fe fe-document"></i><span>Logo</span></a></li>--}}
-{{--                        <li><a class="{{ str_contains(url()->current(), "training") ? 'active' : '' }}" href=""><i class="fe fe-document"></i><span>Sliding Images</span></a></li>--}}
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a class="" href="#"><i class="fe fe-document"></i><span>Banners</span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a class="{{ str_contains(url()->current(), "socialicon") ? 'active' : '' }}" href="{{ route('admin.socialicon.index') }}"><i class="fe fe-document"></i><span>Header Left Side</span></a></li>
+                        <li><a class="{{ str_contains(url()->current(), "logo") ? 'active' : '' }}" href="{{ route('admin.logo.index') }}"><i class="fe fe-document"></i><span>Logo</span></a></li>
+                        <li><a class="{{ str_contains(url()->current(), "favicon") ? 'active' : '' }}" href="{{ route('admin.favicon.index') }}"><i class="fe fe-document"></i><span>FavIcon</span></a></li>
+                        <li><a class="{{ str_contains(url()->current(), "slidingimage") ? 'active' : '' }}" href="{{ route('admin.slidingimage.index') }}"><i class="fe fe-document"></i><span>Sliding Image</span></a></li>
                     </ul>
                 </li>
 {{--                <li class="menu-title">--}}

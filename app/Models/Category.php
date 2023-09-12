@@ -31,4 +31,8 @@ class Category extends Model
     {
         return $this->hasMany(Training::class);
     }
+    public function faqs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Faq::class);
+    }
 }

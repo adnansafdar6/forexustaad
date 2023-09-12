@@ -87,7 +87,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             'categories' => App\Http\Controllers\Admin\CategoryController::class,
             'subcategories' => App\Http\Controllers\Admin\SubCategoryController::class,
             'socialicon' => App\Http\Controllers\Admin\SocialIconController::class,
-//            'logo' => App\Http\Controllers\Admin\LogoController::class,
+            'faq' => App\Http\Controllers\Admin\FaqController::class,
         ]);
     });
 });
