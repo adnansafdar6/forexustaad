@@ -180,7 +180,7 @@ class PostController extends Controller
                 $data .= '<td class="width-20">' . $val->title . '</td>';
                 $data .= '<td class="width-20">' . $val['category']->name . '</td>';
                 $data .= '<td class="width-20">Comments</td>';
-                $data .= '<td class="width-20">' . \Carbon\Carbon::parse($val->created_at)->format('d/m/Y h:i') . '</td>';
+                $data .= '<td class="width-20">' . DateToHumanformat($val->created_at) . '</td>';
 
                 if ($val->status == "pending") {
                     $data .= '<td class="width-20"><a href="' . route('admin.post.status', [$val->id, 'public']) . '" title="Public Now"><button class="btn btn-outline-danger">Public Now</button></a></td>';

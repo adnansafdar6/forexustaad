@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Logo;
+
+use App\Models\Slidingimage;
 use Illuminate\Http\Request;
 use Exception;
 
-class LogoController extends Controller
+class SlidingimageController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->pageTitle = 'Logo';
+        $this->pageTitle = 'Sliding Image';
         $this->breadcrumbs[route('admin.home')] = ['icon' => 'fa fa-fw fa-home', 'title' => 'Dashboard'];
-        $this->breadcrumbs[route('admin.categories.index')] = ['icon' => 'fa fa-fw fa-home', 'title' => 'Logo'];
+        $this->breadcrumbs[route('admin.slidingimage.index')] = ['icon' => 'fa fa-fw fa-home', 'title' => 'Sliding Image'];
     }
 
     /**
@@ -24,10 +25,10 @@ class LogoController extends Controller
     public function index()
     {
         try {
-            return view('admin.logo.index', [
-                'logos' => Logo::all(),
-                'logo' => new Logo(),
-                'action' => route('admin.logo.update', 0),
+            return view('admin.slidingimage.index', [
+                'slidingimages' => Slidingimage::all(),
+                'slidingimage' => new Slidingimage(),
+                'action' => route('admin.slidingimage.update', 0),
             ]);
         } catch (Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
@@ -68,10 +69,10 @@ class LogoController extends Controller
 
     public function changeStatus($id)
     {
-        $training = Logo::findOrFail($id);
-        $training->is_active = !$training->is_active;
-        $training->save();
-        $message = $training->is_active == 0 ? 'Logo De-Active Successfully' : 'Logo Active Successfully';
+        $slidingimage = Slidingimage::findOrFail($id);
+        $slidingimage->is_active = !$slidingimage->is_active;
+        $slidingimage->save();
+        $message = $slidingimage->is_active == 0 ? 'Sliding Image De-Active Successfully' : 'Sliding Image Active Successfully';
 //        return response()->json([$message, 'data' => $products]);
         return redirect()->back()->with('success', $message);
     }
@@ -83,13 +84,13 @@ class LogoController extends Controller
      */
     public function edit($id)
     {
-        $this->pageHeading = (($id == 0) ? 'Add Logo' : 'Edit Logo');
+        $this->pageHeading = (($id == 0) ? 'Add Sliding Image' : 'Edit Sliding Image');
         $this->breadcrumbs['javascript:{};'] = ['icon' => 'fa fa-fw fa-money', 'title' => $this->pageHeading];
         try {
-            return view('admin.logo.index', [
-                'logo' => Logo::findOrFail($id),
-                'logos' => Logo::all(),
-                'action' => route('admin.logo.update', $id),
+            return view('admin.slidingimage.index', [
+                'slidingimage' => Slidingimage::findOrFail($id),
+                'slidingimages' => Slidingimage::all(),
+                'action' => route('admin.slidingimage.update', $id),
             ]);
         } catch (Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
@@ -119,9 +120,9 @@ class LogoController extends Controller
 
             unset($request['image']);
 
-            Logo::updateOrCreate(['id' => $id], $request);
-            $message = $id > 0 ? 'Logo Updated Successfully' : 'Logo Added Successfully';
-            return redirect(route('admin.logo.index'))->with('success', $message);
+            Slidingimage::updateOrCreate(['id' => $id], $request);
+            $message = $id > 0 ? 'Sliding Image Updated Successfully' : 'Sliding Image Added Successfully';
+            return redirect(route('admin.slidingimage.index'))->with('success', $message);
         } catch (Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
@@ -136,29 +137,29 @@ class LogoController extends Controller
     public function destroy($id): \Illuminate\Http\JsonResponse
     {
         try {
-            $logo = Logo::findOrFail($id);
-            $logo->delete();
+            $Slidingimage = Slidingimage::findOrFail($id);
+            $Slidingimage->delete();
             $data = $this->all();
-            return response()->json(['msg' => 'Logo Deleted Successfully.', 'data' => $data]);
+            return response()->json(['msg' => 'Sliding Image Deleted Successfully.', 'data' => $data]);
         } catch (Exception $exception) {
-            return response()->json(['msg' => 'Logo Not Found.']);
+            return response()->json(['msg' => 'Sliding Image Not Found.']);
         }
     }
 
     private function all(): string
     {
-        $logos = Logo::all();
+        $Slidingimages = Slidingimage::all();
         $data = '<table id="dataTable" class="datatable table table-stripped" ><thead>
                                                         <tr>
                                                         <th>Sr#</th>
-                                                         <th>Logo</th>
+                                                         <th>Image</th>
                                                          <th>Status</th>
                                                           <th>Created At</th>
                                                           <th>Action</th>
                                                          </tr></thead><tbody>';
 
-        if (count($logos) > 0) {
-            foreach ($logos as $key => $val) {
+        if (count($Slidingimages) > 0) {
+            foreach ($Slidingimages as $key => $val) {
                 $data .= '<tr><td class="width-10">' . ($key + 1) . '</td>';
                 $data .= '<td><img  src="'.asset($val->img).'" alt="No image" width="100px"></td>';
                 if ($val->is_active == 0) {
@@ -169,12 +170,12 @@ class LogoController extends Controller
                 $data .= '<td class="width-15">' .DateToHumanformat($val->created_at) . '</td>';
                 $data .= '<td class="width-15">';
                 if ($val->is_active == 1) {
-                    $data .= ' <a class="pr-2" href="' . route('admin.logo.changeStatus', $val->id) . '" title="Active"><i class="fa-solid fa-arrow-up" style="color: #898fe1;"></i></a>';
+                    $data .= ' <a class="pr-2" href="' . route('admin.slidingimage.changeStatus', $val->id) . '" title="Active"><i class="fa-solid fa-arrow-up" style="color: #898fe1;"></i></a>';
                 } else {
-                    $data .= ' <a class="pr-2" href="' . route('admin.logo.changeStatus', $val->id) . '" title="De-Active"><i class="fa-solid fa-arrow-down-long" style="color: #cd1d49;"></i></a>';
+                    $data .= ' <a class="pr-2" href="' . route('admin.slidingimage.changeStatus', $val->id) . '" title="De-Active"><i class="fa-solid fa-arrow-down-long" style="color: #cd1d49;"></i></a>';
                 }
-                $data .= '<a class="pr-2" href="' . route('admin.logo.edit', $val->id) . '" title="Edit"><i class="fa-solid fa-pen-to-square" style="color: #68ee6a;"></i></a>
-                     <a href="javascript:{};" data-url="' . route('admin.logo.destroy', $val->id) . '" title="Delete" class="delete"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></a></td></tr>';
+                $data .= '<a class="pr-2" href="' . route('admin.slidingimage.edit', $val->id) . '" title="Edit"><i class="fa-solid fa-pen-to-square" style="color: #68ee6a;"></i></a>
+                     <a href="javascript:{};" data-url="' . route('admin.slidingimage.destroy', $val->id) . '" title="Delete" class="delete"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></a></td></tr>';
             }
         } else {
             $data .= '<tr><td colspan="3">No Record Found.</td></tr>';

@@ -6,9 +6,8 @@
     <div class="mb-3">
         <label for="name" style="margin-bottom: 10px;">Name</label>
         <div class="mb-3">
-            <label for="value" style="margin-bottom: 10px;">Select Category</label>
             <select class="custom-select" name="name" required>
-                <option value="-1">----Select Category Name----</option>
+                <option value="-1">----Select Name----</option>
                 <option class="Twitter" value="twitter">Twitter</option>
                 <option class="Youtube" value="youtube">Youtube</option>
                 <option class="Facebook" value="facebook">Facebook</option>

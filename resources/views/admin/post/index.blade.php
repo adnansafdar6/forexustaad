@@ -46,7 +46,7 @@
                                         <td class="width-20">{{ $value->title }}</td>
                                         <td class="width-20">{{$value['category']->name}}</td>
                                         <td class="width-20">Comments</td>
-                                        <td class="width-20">{{ \Carbon\Carbon::parse($value->created_at)->format('d/m/Y h:i')}}</td>
+                                        <td class="width-20">{{ DateToHumanformat($value->created_at)}}</td>
                                         <td class="width-15">
                                             @if($value->status == "pending")
                                                 <a  href="{{ route('admin.post.status', [$value->id, 'public']) }}"title="Public Now">

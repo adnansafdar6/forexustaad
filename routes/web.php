@@ -64,6 +64,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/training/{id}/status', [App\Http\Controllers\Admin\TrainingController::class, 'changeStatus'])->name('training.changeStatus');
         Route::get('/training/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('training.show');
         Route::resource('training', 'App\Http\Controllers\Admin\TrainingController', ['except' => ['show', 'edit']]);
+//        Logo Routes
+        Route::get('/logo/{id}/edit', [App\Http\Controllers\Admin\LogoController::class, 'edit'])->name('logo.edit');
+        Route::get('/logo/{id}/status', [App\Http\Controllers\Admin\LogoController::class, 'changeStatus'])->name('logo.changeStatus');
+//        Route::get('/logo/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('training.show');
+        Route::resource('logo', 'App\Http\Controllers\Admin\LogoController', ['except' => ['show', 'edit']]);
+        //        Favicon Routes
+        Route::get('/favicon/{id}/edit', [App\Http\Controllers\Admin\FaviconController::class, 'edit'])->name('favicon.edit');
+        Route::get('/favicon/{id}/status', [App\Http\Controllers\Admin\FaviconController::class, 'changeStatus'])->name('favicon.changeStatus');
+//        Route::get('/favicon/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('favicon.show');
+        Route::resource('favicon', 'App\Http\Controllers\Admin\FaviconController', ['except' => ['show', 'edit']]);
+        //        Sliding Image Routes
+        Route::get('/slidingimage/{id}/edit', [App\Http\Controllers\Admin\SlidingimageController::class, 'edit'])->name('slidingimage.edit');
+        Route::get('/slidingimage/{id}/status', [App\Http\Controllers\Admin\SlidingimageController::class, 'changeStatus'])->name('slidingimage.changeStatus');
+//        Route::get('/favicon/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('favicon.show');
+        Route::resource('slidingimage', 'App\Http\Controllers\Admin\SlidingimageController', ['except' => ['show', 'edit']]);
+
 
         Route::resources([
             'permissions' => App\Http\Controllers\Admin\PermissionController::class,
@@ -71,6 +87,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             'categories' => App\Http\Controllers\Admin\CategoryController::class,
             'subcategories' => App\Http\Controllers\Admin\SubCategoryController::class,
             'socialicon' => App\Http\Controllers\Admin\SocialIconController::class,
+//            'logo' => App\Http\Controllers\Admin\LogoController::class,
         ]);
     });
 });

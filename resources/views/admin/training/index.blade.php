@@ -3,7 +3,7 @@
 @endpush
 @section('content')
     <!-- Page Wrapper -->
-
+    {{--{{dd($categories[0]['subcategories'] )}}--}}
     <div class="content container-fluid">
         <!-- Page Header -->
         <div class="page-header">
@@ -27,11 +27,11 @@
                                 </a>
                             </div>
                             <div class="col-4">
-                                <select class="custom-select " name="category_id" >
-                                    <option value="">----Filter By Category----</option>
-                                    @foreach($training as $key => $value)
-                                        <option
-                                            value="{{ $value->id }}">{{ ucfirst( $value['category']->name) }}</option>
+                                <select class="custom-select" name="category_id" id="cat">
+                                    <option value="-1">----Filter By Category----</option>
+                                    @foreach($categories[0]['subcategories'] as  $value)
+                                        {{--                                        {{dd($value)}}--}}
+                                        <option value="{{ $value->id }}">{{ ucfirst( $value->name) }}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('category_id'))
@@ -46,7 +46,7 @@
 
                         <div class="table-responsive" id="data">
                             <table class="datatable table table-stripped" id="dataTable">
-                                <thead>
+                                <thead id="thead">
                                 <tr>
                                     <th>Sr#</th>
                                     <th>Title</th>
@@ -57,14 +57,14 @@
                                     <th>Action</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tr">
                                 @forelse($training as $key => $value)
                                     <tr>
                                         <td class="width-10">{{ $key+1 }}</td>
                                         <td class="width-20">{{ $value->title }}</td>
                                         <td class="width-20">{{$value['category']->name}}</td>
                                         <td class="width-20">Comments</td>
-                                        <td class="width-20">{{ \Carbon\Carbon::parse($value->created_at)->format('d/m/Y h:i')}}</td>
+                                        <td class="width-20">{{ DateToHumanformat($value->created_at)}}</td>
                                         <td class="width-15">
                                             @if($value->is_active == 0)
                                                 <span>De-Active</span>
@@ -115,4 +115,26 @@
 @endsection
 @push('script-page-level')
 
+    <script>
+        $(document).ready(function () {
+            $("#cat").on('change', function () {
+                var training = $(this).val();
+                $.ajax({
+                    url: "{{route('admin.training.index')}}",
+                    type: "GET",
+                    data: {
+                        'training': training,
+                    },
+                    success: function (data) {
+                        $('#data').html(data.training);
+                        $('#dataTable').DataTable({
+                            "destroy": true,
+                        });
+
+                    }
+                });
+            });
+        });
+
+    </script>
 @endpush

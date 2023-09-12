@@ -30,4 +30,22 @@ class Controller extends BaseController
             ]);
         });
     }
+    public function saveImage($image, $img)
+    {
+        $ext = $image->getClientOriginalExtension();
+        $ext = strtolower($ext);
+//        if($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'svg' || $ext == 'webp'){
+        if (!is_null($img)) {
+            $path = public_path($img);
+            if (is_file($path)) {
+                unlink($path);
+            }
+        }
+        $path = 'assets/front/uploads/';
+        $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        $i = $image->move($path, $profileImage);
+        return $path . $profileImage;
+//        }
+    }
+
 }
