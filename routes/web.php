@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('/post/uploadCkImage', [App\Http\Controllers\Admin\PostController::class, 'uploadCkImage'])->name('post.ckeditor');
         Route::put('/post/update/{id}', [App\Http\Controllers\Admin\PostController::class, 'update'])->name('post.update');
         Route::delete('/post/delete/{id}', [App\Http\Controllers\Admin\PostController::class, 'destroy'])->name('post.destroy');
-//Training Routes
+//       Training Routes
         Route::get('/training/{id}/edit', [App\Http\Controllers\Admin\TrainingController::class, 'edit'])->name('training.edit');
         Route::get('/training/{id}/status', [App\Http\Controllers\Admin\TrainingController::class, 'changeStatus'])->name('training.changeStatus');
         Route::get('/training/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('training.show');
@@ -79,6 +79,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/slidingimage/{id}/status', [App\Http\Controllers\Admin\SlidingimageController::class, 'changeStatus'])->name('slidingimage.changeStatus');
 //        Route::get('/favicon/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('favicon.show');
         Route::resource('slidingimage', 'App\Http\Controllers\Admin\SlidingimageController', ['except' => ['show', 'edit']]);
+        //        Banners Routes
+        Route::get('/banner/{id}/edit', [App\Http\Controllers\Admin\BannerController::class, 'edit'])->name('banner.edit');
+        Route::get('/banner/{id}/changeStatus', [App\Http\Controllers\Admin\BannerController::class, 'changeStatus'])->name('banner.changeStatus');
+        Route::get('/banner/{id}/status', [App\Http\Controllers\Admin\BannerController::class, 'Status'])->name('banner.status');
+//        Route::get('/favicon/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('favicon.show');
+        Route::resource('banner', 'App\Http\Controllers\Admin\BannerController', ['except' => ['show', 'edit']]);
 
 
         Route::resources([

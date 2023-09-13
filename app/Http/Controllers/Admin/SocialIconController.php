@@ -121,7 +121,7 @@ class SocialIconController extends Controller
     {
         try {
             $category = SocialIcon::findOrFail($id);
-            $category->delete();
+//            $category->delete();
             $data = $this->all();
             return response()->json(['msg' => 'Social Icon Deleted Successfully.', 'data' => $data]);
         } catch (Exception $exception) {

@@ -39,15 +39,18 @@
                         <li><a class="{{ str_contains(url()->current(), "slidingimage") ? 'active' : '' }}" href="{{ route('admin.slidingimage.index') }}"><i class="fe fe-document"></i><span>Sliding Image</span></a></li>
                     </ul>
                 </li>
-                <li class="submenu">
-                    <a class="" href="#"><i class="fe fe-document"></i><span>Banners</span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a class="{{ str_contains(url()->current(), "socialicon") ? 'active' : '' }}" href="{{ route('admin.socialicon.index') }}"><i class="fe fe-document"></i><span>Header Left Side</span></a></li>
-                        <li><a class="{{ str_contains(url()->current(), "logo") ? 'active' : '' }}" href="{{ route('admin.logo.index') }}"><i class="fe fe-document"></i><span>Logo</span></a></li>
-                        <li><a class="{{ str_contains(url()->current(), "favicon") ? 'active' : '' }}" href="{{ route('admin.favicon.index') }}"><i class="fe fe-document"></i><span>FavIcon</span></a></li>
-                        <li><a class="{{ str_contains(url()->current(), "slidingimage") ? 'active' : '' }}" href="{{ route('admin.slidingimage.index') }}"><i class="fe fe-document"></i><span>Sliding Image</span></a></li>
-                    </ul>
+                <li>
+                    <a class="{{ str_contains(url()->current(), "banner") ? 'active' : '' }}"  href="{{ route('admin.banner.index') }}"><i class="fe fe-user-plus"></i> <span>Banners</span></a>
                 </li>
+{{--                <li class="submenu">--}}
+{{--                    <a class="" href="#"><i class="fe fe-document"></i><span>Banners</span> <span class="menu-arrow"></span></a>--}}
+{{--                    <ul style="display: none;">--}}
+{{--                        <li><a class="{{ str_contains(url()->current(), "socialicon") ? 'active' : '' }}" href="{{ route('admin.socialicon.index') }}"><i class="fe fe-document"></i><span>Header Left Side</span></a></li>--}}
+{{--                        <li><a class="{{ str_contains(url()->current(), "logo") ? 'active' : '' }}" href="{{ route('admin.logo.index') }}"><i class="fe fe-document"></i><span>Logo</span></a></li>--}}
+{{--                        <li><a class="{{ str_contains(url()->current(), "favicon") ? 'active' : '' }}" href="{{ route('admin.favicon.index') }}"><i class="fe fe-document"></i><span>FavIcon</span></a></li>--}}
+{{--                        <li><a class="{{ str_contains(url()->current(), "slidingimage") ? 'active' : '' }}" href="{{ route('admin.slidingimage.index') }}"><i class="fe fe-document"></i><span>Sliding Image</span></a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
 {{--                <li class="menu-title">--}}
 {{--                    <span>Pages</span>--}}
 {{--                </li>--}}

@@ -170,7 +170,7 @@ class TrainingController extends Controller
                 $data .= '<td class="width-20">' . $val->title . '</td>';
                 $data .= '<td class="width-20">' . $val['category']->name . '</td>';
                 $data .= '<td class="width-20">Comments</td>';
-                $data .= '<td class="width-20">' . \Carbon\Carbon::parse($val->created_at)->format('d/m/Y h:i') . '</td>';
+                $data .= '<td class="width-20">' .DateToHumanformat($val->created_at). '</td>';
                 if ($val->is_active == 0) {
                     $data .= '<td>' . "<span>De-Active</span>" . '</td>';
                 } else {

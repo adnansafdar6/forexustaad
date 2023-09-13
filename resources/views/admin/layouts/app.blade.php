@@ -60,7 +60,7 @@
 </div>
 
 <!-- jQuery -->
-<script src="{{ asset('assets/admin/new/js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
 <!-- Ckeditor -->
 <script src="{{ asset('assets/admin/new/ckeditor5/ckeditor.js') }}"></script>
 
@@ -100,19 +100,19 @@
                 'session_id'=> session()->getId(),
         ]) !!};
     $(document).ready(function () {
-        // $('#dataTable').DataTable({
-        //     destroy: true,
-        //     processing: true,
-        //     select: true,
-        //     paging: true,
-        //     lengthChange: true,
-        //     "lengthMenu": [[13, 25, 50, -1], [13, 25, 50, "All"]],
-        //     searching: true,
-        //     "order": [],
-        //     info: false,
-        //     responsive: true,
-        //     autoWidth: false
-        // });
+        $('#dataTable').DataTable({
+            destroy: true,
+            processing: true,
+            select: true,
+            paging: true,
+            lengthChange: true,
+            "lengthMenu": [[13, 25, 50, -1], [13, 25, 50, "All"]],
+            searching: true,
+            "order": [],
+            info: false,
+            responsive: true,
+            autoWidth: false
+        });
 
         $(".admin-logout").on("click", function(event){
             event.preventDefault();

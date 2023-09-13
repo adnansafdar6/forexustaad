@@ -8,15 +8,15 @@
         <div class="mb-3">
             <select class="custom-select" name="name" required>
                 <option value="-1">----Select Name----</option>
-                <option class="Twitter" value="twitter">Twitter</option>
-                <option class="Youtube" value="youtube">Youtube</option>
-                <option class="Facebook" value="facebook">Facebook</option>
-                <option class="LinkedIn" value="linkedin">LinkedIn</option>
-                <option class="GooglePlus" value="google-plus">Google Plus</option>
-                <option class="Pinterest" value="pinterest">Pinterest</option>
-                <option class="Snapchat" value="snapchat">Snapchat</option>
-                <option class="Tiktok" value="tiktok">Tiktok</option>
-                <option class="Instagram" value="instagram">Instagram</option>
+                <option class="Twitter" value="twitter"{{ old('name',$socialicon->name)=='twitter' ? 'selected' : ''  }}>Twitter</option>
+                <option class="Youtube" value="youtube"{{ old('name',$socialicon->name)=='youtube' ? 'selected' : ''  }}>Youtube</option>
+                <option class="Facebook" value="facebook"{{ old('name',$socialicon->name)=='facebook' ? 'selected' : ''  }}>Facebook</option>
+                <option class="LinkedIn" value="linkedin"{{ old('name',$socialicon->name)=='linkedin' ? 'selected' : ''  }}>LinkedIn</option>
+                <option class="GooglePlus" value="google-plus"{{ old('name',$socialicon->name)=='google-plus' ? 'selected' : ''  }}>Google Plus</option>
+                <option class="Pinterest" value="pinterest"{{ old('name',$socialicon->name)=='pinterest' ? 'selected' : ''  }}>Pinterest</option>
+                <option class="Snapchat" value="snapchat"{{ old('name',$socialicon->name)=='snapchat' ? 'selected' : ''  }}>Snapchat</option>
+                <option class="Tiktok" value="tiktok"{{ old('name',$socialicon->name)=='tiktok' ? 'selected' : ''  }}>Tiktok</option>
+                <option class="Instagram" value="instagram"{{ old('name',$socialicon->name)=='instagram' ? 'selected' : ''  }}>Instagram</option>
             </select>
             @if($errors->has('name'))
                 <p class="text-danger">{{ $errors->first('name') }}</p>
