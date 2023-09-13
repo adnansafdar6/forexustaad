@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Banner;
+use App\Models\Api;
 use Illuminate\Http\Request;
 
-class BannerController extends Controller
+class ApiController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->pageTitle = 'Banners';
+        $this->pageTitle = 'Apis';
         $this->breadcrumbs[route('admin.home')] = ['icon' => 'fa fa-fw fa-home', 'title' => 'Dashboard'];
-        $this->breadcrumbs[route('admin.banner.index')] = ['icon' => 'fa fa-fw fa-home', 'title' => 'Banners'];
+        $this->breadcrumbs[route('admin.api.index')] = ['icon' => 'fa fa-fw fa-home', 'title' => 'Apis'];
     }
 
     /**
@@ -23,9 +23,9 @@ class BannerController extends Controller
     public function index()
     {
         try {
-            return view('admin.banner.index', [
-                'banners' => Banner::all(),
-                'action' => route('admin.banner.edit', 0),
+            return view('admin.api.index', [
+                'apis' => Api::all(),
+                'action' => route('admin.api.edit', 0),
             ]);
         } catch (Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
@@ -66,20 +66,20 @@ class BannerController extends Controller
 
     public function changeStatus($id)
     {
-        $banner = Banner::findOrFail($id);
-        $banner->is_active = !$banner->is_active;
-        $banner->save();
-        $message = $banner->is_active == 0 ? 'Banner De-Active Successfully' : 'Banner Active Successfully';
+        $Api = Api::findOrFail($id);
+        $Api->is_active = !$Api->is_active;
+        $Api->save();
+        $message = $Api->is_active == 0 ? 'api De-Active Successfully' : 'api Active Successfully';
 //        return response()->json([$message, 'data' => $products]);
         return redirect()->back()->with('success', $message);
     }
 
     public function Status($id)
     {
-        $banner = Banner::findOrFail($id);
-        $banner->is_featured = !$banner->is_featured;
-        $banner->save();
-        $message = $banner->is_featured == 0 ? 'Lecture De Featured Successfully' : 'Lecture Featured Successfully';
+        $Api = Api::findOrFail($id);
+        $Api->is_feature = !$Api->is_feature;
+        $Api->save();
+        $message = $Api->is_feature == 0 ? 'Api De Featured Successfully' : 'Api Featured Successfully';
 //        return response()->json([$message, 'data' => $products]);
         return redirect()->back()->with('success', $message);
     }
@@ -93,18 +93,18 @@ class BannerController extends Controller
 
     public function edit($id)
     {
-        $this->pageHeading = (($id == 0) ? 'Add Banner' : 'Edit Banner');
+        $this->pageHeading = (($id == 0) ? 'Add Api' : 'Edit Api');
         $this->breadcrumbs['javascript:{};'] = ['icon' => 'fa fa-fw fa-money', 'title' => $this->pageHeading];
         if ($id == 0) {
-            $Banner = new Banner();
+            $Api = new Api();
         } else {
-            $Banner = Banner::findOrFail($id);
+            $Api = Api::findOrFail($id);
         }
         try {
-            return view('admin.banner.edit', [
-                'banner' => $Banner,
-                'banners' => Banner::all(),
-                'action' => route('admin.banner.update', $id),
+            return view('admin.api.edit', [
+                'api' => $Api,
+                'apis' => Api::all(),
+                'action' => route('admin.api.update', $id),
             ]);
         } catch (Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
@@ -121,25 +121,22 @@ class BannerController extends Controller
     public function update(Request $request, $id)
     {
         $request = $request->except('_token', '_method');
-        if (!isset($request['is_featured'])) {
-            $request['is_featured'] = 0;
+        if (!isset($request['is_feature'])) {
+            $request['is_feature'] = 0;
         } else {
-            $request['is_featured'] = 1;
+            $request['is_feature'] = 1;
         }
         if (!isset($request['is_active'])) {
             $request['is_active'] = 0;
         } else {
             $request['is_active'] = 1;
         }
-        if ((isset($request['img']))) {
-            $request['img'] = $this->saveImage($request['img'], $request['image']);
-        }
-        unset($request['image']);
+
 //        dd($request);
         try {
-            Banner::updateOrCreate(['id' => $id], $request);
-            $message = $id > 0 ? 'Banner Updated Successfully' : 'Banner Added Successfully';
-            return redirect(route('admin.banner.index'))->with('success', $message);
+            Api::updateOrCreate(['id' => $id], $request);
+            $message = $id > 0 ? 'api Updated Successfully' : 'api Added Successfully';
+            return redirect(route('admin.api.index'))->with('success', $message);
         } catch (Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
@@ -154,53 +151,47 @@ class BannerController extends Controller
     public function destroy($id): \Illuminate\Http\JsonResponse
     {
         try {
-            $banner = Banner::findOrFail($id);
-            $banner->delete();
+            $api = Api::findOrFail($id);
+            $api->delete();
             $data = $this->all();
-            return response()->json(['msg' => 'Banner Deleted Successfully.', 'data' => $data]);
+            return response()->json(['msg' => 'api Deleted Successfully.', 'data' => $data]);
         } catch (Exception $exception) {
-            return response()->json(['msg' => 'Banner Not Found.']);
+            return response()->json(['msg' => 'api Not Found.']);
         }
     }
 
     private function all(): string
     {
-        $banner=Banner::all();
+        $Api=Api::all();
         $data = '<table id="dataTable" class="datatable table table-stripped" ><thead><tr>
     <th>Sr#</th>
-                                        <th>Image</th>
                                         <th>Title</th>
                                         <th>Link</th>
-                                        <th>Html Link</th>
                                         <th>Date</th>
-                                        <th>Place</th>
                                         <th>Status</th>
                                         <th>Action</th>
 </tr></thead><tbody>';
-        if (count($banner) > 0) {
-            foreach ($banner as $key => $val) {
+        if (count($Api) > 0) {
+            foreach ($Api as $key => $val) {
                 $data .= '<tr><td class="width-10">' . ($key + 1) . '</td>';
-                $data .= '<td><img  src="' . asset($val->img) . '" alt="No image" width="100px"></td>';
                 $data .= '<td class="width-15">' . $val->name . '</td>';
                 $data .= '<td class="width-15"><a href="' . $val->link . '" >' . strlimit($val->link) . '</a></td>';
-                $data .= '<td class="width-15">' . strlimit($val->htmllink) . '</td>';
                 $data .= '<td class="width-15">' . DateToHumanformat($val->created_at) . '</td>';
-                $data .= '<td class="width-15">' . $val->type . '</td>';
                 if ($val->is_active == 0) {
-                    $data .= '<td>' . "<span>De-Active</span>" . '</td>';
+                    $data .= '<td class="width-15">' . "<span>De-Active</span>" . '</td>';
                 } else {
-                    $data .= '<td>' . "<span>Active</span>" . '</td>';
+                    $data .= '<td class="width-15">' . "<span>Active</span>" . '</td>';
                 }
-                $data .= '<td class="width-20">';
+                $data .= '<td class="width-15">';
                 if ($val->is_featured == 1) {
-                    $data .= ' <a class="pr-2" href="' . route('admin.banner.status', $val->id) . '" title="De Featured"><i class="fa-solid fa-arrow-up" style="color: #898fe1;"></i></a>';
+                    $data .= ' <a class="pr-2" href="' . route('admin.api.status', $val->id) . '" title="De Featured"><i class="fa-solid fa-arrow-up" style="color: #898fe1;"></i></a>';
                 } else {
-                    $data .= ' <a class="pr-2" href="' . route('admin.banner.status', $val->id) . '" title="Featured"><i class="fa-solid fa-arrow-down-long" style="color: #cd1d49;"></i></a>';
+                    $data .= ' <a class="pr-2" href="' . route('admin.api.status', $val->id) . '" title="Featured"><i class="fa-solid fa-arrow-down-long" style="color: #cd1d49;"></i></a>';
                 }
                 if ($val->is_active == 1) {
-                    $data .= ' <a class="pr-2" href="' . route('admin.banner.changeStatus', $val->id) . '" title="De Active"><i class="fa-solid fa-thumbs-up"></i></a>';
+                    $data .= ' <a class="pr-2" href="' . route('admin.api.changeStatus', $val->id) . '" title="De Active"><i class="fa-solid fa-thumbs-up"></i></a>';
                 } else {
-                    $data .= ' <a class="pr-2" href="' . route('admin.banner.changeStatus', $val->id) . '" title="Active"><i class="fa-solid fa-thumbs-down" style="color: #ff3300;"></i></a>';
+                    $data .= ' <a class="pr-2" href="' . route('admin.api.changeStatus', $val->id) . '" title="Active"><i class="fa-solid fa-thumbs-down" style="color: #ff3300;"></i></a>';
                 }
                 $data .= '<a class="pr-2" href="' . route('admin.training.edit', $val->id) . '" title="Edit"><i class="fa-solid fa-pen-to-square"
                                                                style="color: #68ee6a;"></i></a>';

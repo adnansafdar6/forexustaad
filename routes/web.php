@@ -85,6 +85,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/banner/{id}/status', [App\Http\Controllers\Admin\BannerController::class, 'Status'])->name('banner.status');
 //        Route::get('/favicon/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('favicon.show');
         Route::resource('banner', 'App\Http\Controllers\Admin\BannerController', ['except' => ['show', 'edit']]);
+        //        Apis Routes
+        Route::get('/api/{id}/edit', [App\Http\Controllers\Admin\ApiController::class, 'edit'])->name('api.edit');
+        Route::get('/api/{id}/changeStatus', [App\Http\Controllers\Admin\ApiController::class, 'changeStatus'])->name('api.changeStatus');
+        Route::get('/api/{id}/status', [App\Http\Controllers\Admin\ApiController::class, 'Status'])->name('api.status');
+//        Route::get('/favicon/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('favicon.show');
+        Route::resource('api', 'App\Http\Controllers\Admin\ApiController', ['except' => ['show', 'edit']]);
 
 
         Route::resources([

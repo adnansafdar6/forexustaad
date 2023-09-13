@@ -100,19 +100,19 @@
                 'session_id'=> session()->getId(),
         ]) !!};
     $(document).ready(function () {
-        $('#dataTable').DataTable({
-            destroy: true,
-            processing: true,
-            select: true,
-            paging: true,
-            lengthChange: true,
-            "lengthMenu": [[13, 25, 50, -1], [13, 25, 50, "All"]],
-            searching: true,
-            "order": [],
-            info: false,
-            responsive: true,
-            autoWidth: false
-        });
+        // $('#dataTable').DataTable({
+        //     destroy: true,
+        //     processing: true,
+        //     select: true,
+        //     paging: true,
+        //     lengthChange: true,
+        //     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        //     searching: true,
+        //     "order": [],
+        //     info: false,
+        //     responsive: true,
+        //     autoWidth: false
+        // });
 
         $(".admin-logout").on("click", function(event){
             event.preventDefault();

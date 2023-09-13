@@ -42,6 +42,9 @@
                 <li>
                     <a class="{{ str_contains(url()->current(), "banner") ? 'active' : '' }}"  href="{{ route('admin.banner.index') }}"><i class="fe fe-user-plus"></i> <span>Banners</span></a>
                 </li>
+                <li>
+                    <a class="{{ str_contains(url()->current(), "api") ? 'active' : '' }}"  href="{{ route('admin.api.index') }}"><i class="fe fe-user-plus"></i> <span>Api's</span></a>
+                </li>
 {{--                <li class="submenu">--}}
 {{--                    <a class="" href="#"><i class="fe fe-document"></i><span>Banners</span> <span class="menu-arrow"></span></a>--}}
 {{--                    <ul style="display: none;">--}}
