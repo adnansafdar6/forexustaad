@@ -91,6 +91,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/api/{id}/status', [App\Http\Controllers\Admin\ApiController::class, 'Status'])->name('api.status');
 //        Route::get('/favicon/{training:slug}', [App\Http\Controllers\Admin\TrainingController::class, 'show'])->name('favicon.show');
         Route::resource('api', 'App\Http\Controllers\Admin\ApiController', ['except' => ['show', 'edit']]);
+        //        Sponsor Routes
+        Route::get('/sponsor/{id}/edit', [App\Http\Controllers\Admin\SponsorController::class, 'edit'])->name('sponsor.edit');
+        Route::get('/sponsor/{id}/changeStatus', [App\Http\Controllers\Admin\SponsorController::class, 'changeStatus'])->name('sponsor.changeStatus');
+        Route::resource('/sponsor', 'App\Http\Controllers\Admin\SponsorController', ['except' => ['show', 'edit']]);
+       //        Footer Routes
+        Route::get('/footer/{id}/edit', [App\Http\Controllers\Admin\FooterController::class, 'edit'])->name('footer.edit');
+        Route::get('/footer/{id}/changeStatus', [App\Http\Controllers\Admin\FooterController::class, 'changeStatus'])->name('footer.changeStatus');
+        Route::resource('/footer', 'App\Http\Controllers\Admin\FooterController', ['except' => ['show', 'edit']]);
 
 
         Route::resources([

@@ -18,7 +18,6 @@
                 @if($errors->has('img'))
                     <p class="text-danger">{{ $errors->first('img') }}</p>
                 @endif
-
             </div>
             <div class="col-4 mb-3">
                 <label for="name" style="margin-bottom: 10px;">Title</label>
@@ -30,25 +29,29 @@
             </div>
             <div class=" col-4 mb-3">
                 <label for="name" style="margin-bottom: 10px;">Banner Place</label>
-                <div class="mb-3">
-                    <select class="custom-select" name="type" required>
-                        <option value="-1">----Select Banner Place----</option>
-                        <option value="nav-left" {{ old('type',$banner->type)=='nav-left' ? 'selected' : ''  }}>Nav Left Side</option>
-                        <option value="nav-right"{{ old('type',$banner->type)=='nav-right' ? 'selected' : ''  }} >Nav Right Side</option>
-                        <option value="mid"{{ old('type',$banner->type)=='mid' ? 'selected' : ''  }}>Mid Banner</option>
-                        <option value="content-left"{{ old('type',$banner->type)=='content-left' ? 'selected' : ''  }}>Body Left Side</option>
-                        <option value="content-right"{{ old('type',$banner->type)=='content-right' ? 'selected' : ''  }}>Body Right Side</option>
+                <select class="custom-select" name="type" required>
+                    <option value="-1">----Select Banner Place----</option>
+                    <option value="nav-left" {{ old('type',$banner->type)=='nav-left' ? 'selected' : ''  }}>Nav Left
+                        Side
+                    </option>
+                    <option value="nav-right"{{ old('type',$banner->type)=='nav-right' ? 'selected' : ''  }} >Nav Right
+                        Side
+                    </option>
+                    <option value="mid"{{ old('type',$banner->type)=='mid' ? 'selected' : ''  }}>Mid Banner</option>
+                    <option value="content-left"{{ old('type',$banner->type)=='content-left' ? 'selected' : ''  }}>Body
+                        Left Side
+                    </option>
+                    <option value="content-right"{{ old('type',$banner->type)=='content-right' ? 'selected' : ''  }}>
+                        Body Right Side
+                    </option>
 
-                    </select>
-                    @if($errors->has('name'))
-                        <p class="text-danger">{{ $errors->first('name') }}</p>
-                    @endif
-                </div>
-
+                </select>
                 @if($errors->has('name'))
                     <p class="text-danger">{{ $errors->first('name') }}</p>
                 @endif
             </div>
+
+
             <div class="col-4 mb-3">
                 <label for="name" style="margin-bottom: 10px;">Link</label>
                 <textarea type="text" id="name" class="form-control" name="link"
