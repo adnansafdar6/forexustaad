@@ -24,6 +24,9 @@
                 <li class="{{ str_contains(url()->current(), "training") ? 'active' : '' }}">
                     <a   href="{{ route('admin.training.index') }}"><i class="fe fe-user-plus"></i> <span>Training </span></a>
                 </li>
+                <li class="{{ str_contains(url()->current(), "adduser") ? 'active' : '' }}">
+                    <a   href="{{ route('admin.adduser.index') }}"><i class="fe fe-user-plus"></i> <span>Add user </span></a>
+                </li>
                 <li>
                     <a href="no.html"><i class="fe fe-users"></i> <span>Brokers</span></a>
                 </li>

@@ -6,30 +6,35 @@ use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 
-function formate($date){
-    return substr($date,0, -8);
+function formate($date)
+{
+    return substr($date, 0, -8);
 }
 
-function timecount($date){
+function timecount($date)
+{
     $t1 = strtotime($date);
     $t2 = strtotime(date('h:i:s'));
-    $hours = ($t1 - $t2)/3600;
-    return (int)floor($hours*60)." Min";
+    $hours = ($t1 - $t2) / 3600;
+    return (int)floor($hours * 60) . " Min";
 }
 
-function checked($id, $permissions){
-    foreach ($permissions as $permission){
-        if($permission['id'] == $id){
-            return  true;
+function checked($id, $permissions)
+{
+    foreach ($permissions as $permission) {
+        if ($permission['id'] == $id) {
+            return true;
         }
     }
     return false;
 }
-function services($id){
-    if(session()->has('ORDER')){
-        if(isset(session()->get('ORDER')['services'])){
-            foreach (session()->get('ORDER')['services'] as $key => $val){
-                if($val == $id){
+
+function services($id)
+{
+    if (session()->has('ORDER')) {
+        if (isset(session()->get('ORDER')['services'])) {
+            foreach (session()->get('ORDER')['services'] as $key => $val) {
+                if ($val == $id) {
                     return 'checked';
                 }
             }
@@ -38,22 +43,22 @@ function services($id){
     return false;
 }
 
-function dateF($date){
+function dateF($date)
+{
     return $date->diffForHumans();
 }
-function strlimit($date){
 
-    $limit1 =  Str::limit($date, 15);
-
-
-
+function strlimit($date)
+{
+    $limit1 = Str::limit($date, 15);
     return $limit1;
 }
 
-function checkShopService($shopServices, $id){
-    foreach ($shopServices as $shop){
-        foreach ($shop->services as $service){
-            if($service->id == $id){
+function checkShopService($shopServices, $id)
+{
+    foreach ($shopServices as $shop) {
+        foreach ($shop->services as $service) {
+            if ($service->id == $id) {
                 return 'selected';
             }
         }
@@ -64,7 +69,7 @@ function checkShopService($shopServices, $id){
 function translate($data)
 {
     $locale = app()->getLocale();
-    if($data instanceof stdClass){
+    if ($data instanceof stdClass) {
         if ($locale == 'it' && $data->it == '') {
             return $data->en;
         }
@@ -84,9 +89,10 @@ function translate($data)
 //    }
 }
 
-function checkService($service, $shopServices){
-    foreach ($shopServices->services as $shopService){
-        if($shopService->id == $service->id){
+function checkService($service, $shopServices)
+{
+    foreach ($shopServices->services as $shopService) {
+        if ($shopService->id == $service->id) {
             return false;
         }
     }
@@ -151,7 +157,9 @@ function responseBuilder(): ResponseBuilder
 {
     return new ResponseBuilder();
 }
-function generateRandomString($length = 6) {
+
+function generateRandomString($length = 6)
+{
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -160,6 +168,7 @@ function generateRandomString($length = 6) {
     }
     return $randomString;
 }
+
 function getConversionRate()
 {
     if (Cache::has('SAR')) {
@@ -180,7 +189,8 @@ function getConversionRate()
 
 }
 
-function getAEDCoversationRate(){
+function getAEDCoversationRate()
+{
     $swapEURToUSD = \Swap::latest('EUR/USD');
     $swapEURToAED = \Swap::latest('EUR/AED');
     // rate of 1 USD in EUR
@@ -191,7 +201,8 @@ function getAEDCoversationRate(){
     return round(((1 / $rateAEDToEUR) * $rateUSDToEUR), 2);
 }
 
-function getUSDCoversationRate(){
+function getUSDCoversationRate()
+{
     $swapEURToUSD = \Swap::latest('EUR/USD');
     $swapEURToAED = \Swap::latest('EUR/AED');
     // rate of 1 USD in EUR
@@ -317,6 +328,7 @@ function pluckPackagesValue($availablePackages)
     }
     return $packges;
 }
+
 function DateToUnixformat($date)
 {
 
@@ -326,6 +338,7 @@ function DateToUnixformat($date)
 
     return $timestamp;
 }
+
 function DateToHumanformat($date)
 {
     $dateTime = new DateTime($date);
@@ -337,6 +350,7 @@ function unixTODateformate($date)
 {
     return Carbon::parse(gmdate("Y-m-d H:i:s", $date))->addHours(24)->format('Y-m-d');
 }
+
 function unixTODateformate2($date)
 {
     return Carbon::parse(gmdate("Y-m-d H:i:s", $date))->format(config('settings.date-format'));
@@ -363,15 +377,17 @@ function getConvertedPrice($currency_id, $price)
     return $price;
 }
 
-function getUsdRate(){
+function getUsdRate()
+{
 
     return 0.98;
 }
 
-function deleteImage($path = ''){
+function deleteImage($path = '')
+{
     if (\File::exists($path)) {
         unlink($path);
-    }else{
+    } else {
         return false;
     }
 }
@@ -379,17 +395,17 @@ function deleteImage($path = ''){
 function getPriceObject($productPrice)
 {
 //    $rate = getConversionRate();
-    if ($productPrice instanceof stdClass){
+    if ($productPrice instanceof stdClass) {
         return $productPrice;
-    }else{
-        $rate =  0.2665916655;
+    } else {
+        $rate = 0.2665916655;
         $price = new \stdClass();
 
         $price->sar = new \stdClass();
-        $price->sar->amount = number_format(($productPrice), 2, '.', '')+0;
+        $price->sar->amount = number_format(($productPrice), 2, '.', '') + 0;
         $price->sar->currency = 'SAR';
         $price->usd = new \stdClass();
-        $price->usd->amount = number_format(($productPrice * $rate), 2, '.', '')+0;
+        $price->usd->amount = number_format(($productPrice * $rate), 2, '.', '') + 0;
         $price->usd->currency = 'USD';
 
         return $price;
@@ -421,41 +437,44 @@ function checkSettings($id)
     return false;
 }
 
-function getPrice($price, $currency,$discount = 0)
+function getPrice($price, $currency, $discount = 0)
 {
 
 
-    if($price instanceof stdClass){
+    if ($price instanceof stdClass) {
         $amount = $price->{strtolower($currency)}->amount;
-    }else{
+    } else {
         $amount = $price[strtolower($currency)]['amount'];
     }
 
-    if ($discount > 0){
-        $discountedAmount = $amount * ($discount/100);
+    if ($discount > 0) {
+        $discountedAmount = $amount * ($discount / 100);
         $discount = $amount - $discountedAmount;
         return $currency . ' ' . $discount;
-    }else{
+    } else {
         return $currency . ' ' . $amount;
     }
 }
 
-function getDiscountedAmount($price, $discount, $maxDiscount = 0){
+function getDiscountedAmount($price, $discount, $maxDiscount = 0)
+{
 
-    $discountedAmount = $price * ($discount/100);
-    if ($maxDiscount > 0 && $discountedAmount > $maxDiscount){
+    $discountedAmount = $price * ($discount / 100);
+    if ($maxDiscount > 0 && $discountedAmount > $maxDiscount) {
         $discountedAmount = $maxDiscount;
     }
 
     return $discount = $price - $discountedAmount;
 }
-function getDiscountValue($price, $discount){
-    return $discountedAmount = $price * ($discount/100);
+
+function getDiscountValue($price, $discount)
+{
+    return $discountedAmount = $price * ($discount / 100);
 }
 
 
-
-function limit_text($text, $limit){
+function limit_text($text, $limit)
+{
     if (str_word_count($text, 0) > $limit) {
         $words = str_word_count($text, 2);
         $pos = array_keys($words);
@@ -464,11 +483,13 @@ function limit_text($text, $limit){
     return $text;
 }
 
-function convertDateFormat($format, $value){
-    return date($format,$value);
+function convertDateFormat($format, $value)
+{
+    return date($format, $value);
 }
 
-function uploadImage($request, $path = 'media', $input = 'image'){
+function uploadImage($request, $path = 'media', $input = 'image')
+{
     $imageUploadedPath = '';
     if ($request->hasFile($input)) {
         $uploader = new Uploader($input);
@@ -489,6 +510,7 @@ function uploadImage($request, $path = 'media', $input = 'image'){
     return responseBuilder()->success(__('Image Uploaded'), $data);
 
 }
+
 function unixConversion($duration_type, $duration, $created_at)
 {
     $hours = 24;
@@ -561,9 +583,11 @@ function pushFCMNotification($fields)
     }
 
 }
-function sendFCM($data) {
+
+function sendFCM($data)
+{
     if (!empty($data['fcm_token'])) {
-        logger('=========FCM RESULT Data============', [  $data]);
+        logger('=========FCM RESULT Data============', [$data]);
         $fields = array(
             'to' => $data['fcm_token'],
             'content_available' => true,
@@ -575,24 +599,26 @@ function sendFCM($data) {
         pushFCMNotification($fields);
     }
 }
-function sendNotification($data){
+
+function sendNotification($data)
+{
 
     $receiver = \App\Models\User::where(['id' => $data['receiver_id']])->first();
-    if($receiver && $receiver->settings == 1){
+    if ($receiver && $receiver->settings == 1) {
         $notification = \App\Models\Notification::create($data);
         $fcmTokens = $receiver->fcms();
-        if(!is_null( $fcmTokens))
-        {
+        if (!is_null($fcmTokens)) {
             sendFCM([
                 'fcm_token' => $fcmTokens->fcm_token,
                 'title' => $notification->title['en'],
-                'body' =>$notification->description['en'],
+                'body' => $notification->description['en'],
                 'data' => $notification,
             ]);
         }
         event(new \App\Events\NewNotifications($notification));
     }
 }
+
 // function sendNotification($data){
 //     $receiver = \App\Models\User::where(['id' => $data['receiver_id']])->first();
 //     if($receiver && $receiver->settings == 1){
@@ -601,23 +627,23 @@ function sendNotification($data){
 //     }
 // }
 
-function paginate($items,$url, $perPage = 10)
+function paginate($items, $url, $perPage = 10)
 {
     $page = LengthAwarePaginator::resolveCurrentPage();
     $productCollection = collect($items);
     $currentPageproducts = $productCollection->slice(($page * $perPage) - $perPage, $perPage)->all();
-    $paginatedproducts= new LengthAwarePaginator($currentPageproducts , count($productCollection), $perPage);
+    $paginatedproducts = new LengthAwarePaginator($currentPageproducts, count($productCollection), $perPage);
     $paginatedproducts->setPath($url);
     return $paginatedproducts;
 }
 
 function getAmount($price)
 {
-    $currency =  Session::get('CURRENCY_ID') == 2 ? 'usd' :'sar';
+    $currency = Session::get('CURRENCY_ID') == 2 ? 'usd' : 'sar';
 
-    if($price instanceof stdClass){
+    if ($price instanceof stdClass) {
         $amount = $price->{strtolower($currency)}->amount;
-    }else{
+    } else {
         $amount = $price;
     }
 

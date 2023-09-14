@@ -95,10 +95,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/sponsor/{id}/edit', [App\Http\Controllers\Admin\SponsorController::class, 'edit'])->name('sponsor.edit');
         Route::get('/sponsor/{id}/changeStatus', [App\Http\Controllers\Admin\SponsorController::class, 'changeStatus'])->name('sponsor.changeStatus');
         Route::resource('/sponsor', 'App\Http\Controllers\Admin\SponsorController', ['except' => ['show', 'edit']]);
-       //        Footer Routes
+        //        Footer Routes
         Route::get('/footer/{id}/edit', [App\Http\Controllers\Admin\FooterController::class, 'edit'])->name('footer.edit');
         Route::get('/footer/{id}/changeStatus', [App\Http\Controllers\Admin\FooterController::class, 'changeStatus'])->name('footer.changeStatus');
         Route::resource('/footer', 'App\Http\Controllers\Admin\FooterController', ['except' => ['show', 'edit']]);
+
+        //        Add User Routes
+        Route::get('/adduser/{id}/edit', [App\Http\Controllers\Admin\AddUserController::class, 'edit'])->name('adduser.edit');
+        Route::get('/adduser/{id}', [App\Http\Controllers\Admin\AddUserController::class, 'show'])->name('adduser.show');
+        Route::get('/adduser/{id}/changeStatus', [App\Http\Controllers\Admin\AddUserController::class, 'changeStatus'])->name('adduser.changeStatus');
+        Route::resource('/adduser', 'App\Http\Controllers\Admin\AddUserController', ['except' => ['show', 'edit']]);
 
 
         Route::resources([
@@ -108,6 +114,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             'subcategories' => App\Http\Controllers\Admin\SubCategoryController::class,
             'socialicon' => App\Http\Controllers\Admin\SocialIconController::class,
             'faq' => App\Http\Controllers\Admin\FaqController::class,
+            'profile' => App\Http\Controllers\Admin\FaqController::class,
         ]);
     });
 });

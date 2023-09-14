@@ -6,9 +6,11 @@ namespace App\Models;
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
@@ -25,6 +27,16 @@ class Admin extends Authenticatable implements MustVerifyEmail, JWTSubject
         'name',
         'email',
         'password',
+        'role_id',
+        'img',
+        'name',
+        'fname',
+        'lname',
+        'web',
+        'dob',
+        'is_active',
+        'address',
+        'phone',
     ];
 
     /**
@@ -50,6 +62,13 @@ class Admin extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         $this->notify(new ResetPassword($token));
     }
+    public function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->fname .' ' . $this->lname
+        );
+    }
+
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail());
@@ -63,5 +82,9 @@ class Admin extends Authenticatable implements MustVerifyEmail, JWTSubject
     public function getJWTCustomClaims(): array
     {
         return [];
+    }
+    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Role::class);
     }
 }
