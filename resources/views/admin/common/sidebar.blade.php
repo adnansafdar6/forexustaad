@@ -27,11 +27,19 @@
                 <li class="{{ str_contains(url()->current(), "adduser") ? 'active' : '' }}">
                     <a   href="{{ route('admin.adduser.index') }}"><i class="fe fe-user-plus"></i> <span>Add user </span></a>
                 </li>
-                <li>
-                    <a href="no.html"><i class="fe fe-users"></i> <span>Brokers</span></a>
+
+                <li class="{{ str_contains(url()->current(), "broker") ? 'active' : '' }}">
+                    <a href="{{ route('admin.broker.index') }}"><i class="fe fe-user-plus"></i> <span>Brokers</span></a>
                 </li>
-                <li>
+                <li >
                     <a class="{{ str_contains(url()->current(), "faq") ? 'active' : '' }}"  href="{{ route('admin.faq.index') }}"><i class="fe fe-user-plus"></i> <span>FAQ's </span></a>
+                </li>
+                <li class="submenu">
+                    <a class="" href="#"><i class="fe fe-document"></i><span>Signal</span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a class="{{ str_contains(url()->current(), "pair") ? 'active' : '' }}" href="{{ route('admin.pair.index') }}"><i class="fe fe-document"></i><span>Add pair</span></a></li>
+                        <li><a class="{{ str_contains(url()->current(), "signal") ? 'active' : '' }}"  href="{{ route('admin.signal.index') }}"><i class="fe fe-users"></i> <span>Add Signals</span></a></li>
+                    </ul>
                 </li>
                 <li class="submenu">
                     <a class="" href="#"><i class="fe fe-document"></i><span>Header</span> <span class="menu-arrow"></span></a>

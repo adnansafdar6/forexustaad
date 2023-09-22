@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 
+
 //    Admin Routes.....
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     // Login Routes...
@@ -49,7 +50,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 //    , 'admin.verified'
     route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
-
+        Route::get('/test', function () {
+            return view('admin.test');
+        });
 //        Post Routes
         Route::get('/post', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('post.index');
         Route::get('/post/{id}/edit', [App\Http\Controllers\Admin\PostController::class, 'edit'])->name('post.edit');
@@ -105,6 +108,23 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/adduser/{id}', [App\Http\Controllers\Admin\AddUserController::class, 'show'])->name('adduser.show');
         Route::get('/adduser/{id}/changeStatus', [App\Http\Controllers\Admin\AddUserController::class, 'changeStatus'])->name('adduser.changeStatus');
         Route::resource('/adduser', 'App\Http\Controllers\Admin\AddUserController', ['except' => ['show', 'edit']]);
+  //        Signals Routes
+        Route::get('/signal/{id}/edit', [App\Http\Controllers\Admin\SignalController::class, 'edit'])->name('signal.edit');
+//        Route::get('/signal/{id}', [App\Http\Controllers\Admin\AddUserController::class, 'show'])->name('signal.show');
+        Route::post('/signal/fetchPair', [App\Http\Controllers\Admin\SignalController::class, 'fetchPair'])->name('signal.fetchPair');
+        Route::get('/signal/{id}/changeStatus', [App\Http\Controllers\Admin\SignalController::class, 'changeStatus'])->name('signal.changeStatus');
+        Route::get('/signal/{id}/status', [App\Http\Controllers\Admin\SignalController::class, 'status'])->name('signal.status');
+        Route::resource('/signal', 'App\Http\Controllers\Admin\SignalController', ['except' => ['show', 'edit']]);
+  //        Pairs Routes
+        Route::get('/pair/{id}/edit', [App\Http\Controllers\Admin\PairController::class, 'edit'])->name('pair.edit');
+//        Route::get('/signal/{id}', [App\Http\Controllers\Admin\AddUserController::class, 'show'])->name('signal.show');
+        Route::get('/pair/{id}/changeStatus', [App\Http\Controllers\Admin\PairController::class, 'changeStatus'])->name('pair.changeStatus');
+        Route::resource('/pair', 'App\Http\Controllers\Admin\PairController', ['except' => ['show', 'edit']]);
+  //        Broker Routes
+        Route::get('/broker/{id}/edit', [App\Http\Controllers\Admin\BrokerController::class, 'edit'])->name('broker.edit');
+        Route::get('/broker/{id}', [App\Http\Controllers\Admin\BrokerController::class, 'show'])->name('broker.show');
+        Route::get('/broker/{id}/changeStatus', [App\Http\Controllers\Admin\BrokerController::class, 'changeStatus'])->name('broker.changeStatus');
+        Route::resource('/broker', 'App\Http\Controllers\Admin\BrokerController', ['except' => ['show', 'edit']]);
 
 
         Route::resources([

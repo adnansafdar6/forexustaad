@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $pageTitle }}</title>
+{{--    <title>{{ $pageTitle }}</title>--}}
 
 
     <!-- Fonts -->
@@ -87,7 +87,7 @@
 <script src="{{ asset('assets/admin/plugins/sweetalert2/sweetalert.min.js') }}"></script>
 
 <script src="{{ asset('assets/admin/plugins/datatable/datatable.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/datatable/simple-datatables.min.js') }}"></script>
+<script src="{{ asset('assets/admin/plugins/datatable/simple-datatables.min.js') }}"></script>
 <script src="{{ asset('assets/admin/plugins/datatable/datatable_bootstrap5.min.js') }}"></script>
 <script src="{{ asset('assets/admin/custom/api.js') }}"></script>
 <script type="text/javascript">

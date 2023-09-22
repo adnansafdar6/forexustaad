@@ -21,4 +21,8 @@ class Role extends Model
     {
         return $this->hasMany(Admin::class);
     }
+    public function signal(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Admin::class);
+    }
 }

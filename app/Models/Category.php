@@ -35,4 +35,12 @@ class Category extends Model
     {
         return $this->hasMany(Faq::class);
     }
+    public function pairs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Pair::class);
+    }
+    public function brokers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Broker::class);
+    }
 }

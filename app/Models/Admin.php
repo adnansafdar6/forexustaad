@@ -68,7 +68,10 @@ class Admin extends Authenticatable implements MustVerifyEmail, JWTSubject
             get: fn () => $this->fname .' ' . $this->lname
         );
     }
-
+    public function brokers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Broker::class);
+    }
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail());
