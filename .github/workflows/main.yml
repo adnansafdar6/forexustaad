@@ -29,3 +29,6 @@ jobs:
         server: ${{ secrets.SERVER }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
+        protocol: ftp
+        local-dir: ./
+        server-dir: /public_html/
