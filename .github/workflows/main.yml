@@ -30,6 +30,10 @@ jobs:
         server: ${{ secrets.SERVER }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
+        port: 22
+        source: "./"
+        target: "/home/aneepvsv/laravel_project/"
+        rm: true
         exclude: |
             **/.git*
             **/node_modules/**
