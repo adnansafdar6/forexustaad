@@ -31,7 +31,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         server-dir: ${{ secrets.FTP_TARGET }}
-        protocol: sftp 
         exclude: |
             **/.git*
             **/node_modules/**
